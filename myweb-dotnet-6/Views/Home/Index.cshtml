@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <style>
+        /* CSS for the small circles */
+        .circle {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            position: absolute;
+            pointer-events: none; /* So the circles don't interfere with mouse events */
+            opacity: 0.7;
+            z-index: 1000; /* Ensure circles are on top */
+        }
+    </style>
+</head>
+<body>
+    <div class="text-center">
+        <h1 class="display-4" style="color: green;">Dark Web</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>
+
+    <!-- Container for the circles -->
+    <div id="circleContainer"></div>
+
+    <script>
+        document.addEventListener('mousemove', function (e) {
+            createCircle(e.pageX, e.pageY);
+        });
+
+        function createCircle(x, y) {
+            var circle = document.createElement('div');
+            circle.className = 'circle';
+            circle.style.left = x + 'px';
+            circle.style.top = y + 'px';
+            circle.style.backgroundColor = getRandomColor();
+            document.getElementById('circleContainer').appendChild(circle);
+
+            // Remove the circle after a short delay
+            setTimeout(function () {
+                circle.remove();
+            }, 500);
+        }
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    </script>
+</body>
+</html>

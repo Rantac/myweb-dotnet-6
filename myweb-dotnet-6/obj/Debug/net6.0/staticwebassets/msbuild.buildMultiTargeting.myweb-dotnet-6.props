@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\myweb-dotnet-6.props" />
+</Project>
